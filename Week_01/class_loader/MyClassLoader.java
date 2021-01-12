@@ -70,7 +70,11 @@ public class MyClassLoader extends ClassLoader {
     }
 
 
-    // 解码
+    /**
+     * 解码
+     * @param bytes
+     * @return
+     */
     private static byte[] decode(byte[] bytes) {
         byte[] resultBytes = new byte[bytes.length];
         for (int i = 0,length = bytes.length; i < length; i++) {
