@@ -26,7 +26,7 @@ public class MyClassLoader extends ClassLoader {
      * @return
      */
     private byte[] readClass(String name) {
-        String classPath = new StringBuffer(path).append(name).append(".class").toString();
+        String classPath = new StringBuffer(path).append(name).append(".xlass").toString();
         File file = new File(classPath);
 
         if (!file.exists()) {
@@ -66,6 +66,16 @@ public class MyClassLoader extends ClassLoader {
                 }
             }
         }
-        return readBytes;
+        return decode(readBytes);
+    }
+
+
+    // 解码
+    private static byte[] decode(byte[] bytes) {
+        byte[] resultBytes = new byte[bytes.length];
+        for (int i = 0,length = bytes.length; i < length; i++) {
+            resultBytes[i] = (byte) (255 - bytes[i]);
+        }
+        return resultBytes;
     }
 }
